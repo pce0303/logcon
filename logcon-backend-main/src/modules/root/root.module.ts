@@ -13,7 +13,7 @@ import { CategoryModule } from '../category/category.module';
 import { ChallengeModule } from '../challenge/challenge.module';
 import { DockerModule } from '../docker/docker.module';
 import { ScoreModule } from '../score/score.module';
-// import { UploadModule } from '../upload/upload.module';
+import { UploadModule } from '../upload/upload.module';
 
 @Module({
   imports: [
@@ -31,7 +31,7 @@ import { ScoreModule } from '../score/score.module';
     ChallengeModule,
     DockerModule,
     ScoreModule,
-    // UploadModule,
+    UploadModule,
   ],
   controllers: [RootController],
   providers: [RootService],
