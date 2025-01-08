@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import Container from "../Container";
-import { useChallenge, useCreateChallenge } from "@/hooks";
-import { useState, useEffect } from "react";
+import {
+  useChallenge,
+  useCreateChallenge,
+  useDeleteFileInChallengeById,
+  useUpdateChallenge,
+} from "@/hooks";
+import { useEffect, useState } from "react";
 import { useCategory } from "@/hooks/category";
 import { CreateProps } from "@/api/Challenge/create";
 import { ChallengeType } from "@/api/Challenge/get";
@@ -24,11 +29,7 @@ export default function Challenge({ close }: Props) {
   const [connection, setConnection] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    if (categories && categories.length > 0) {
-      setCategory(categories[0].id);
-    } else {
-      setCategory("");
-    }
+    setCategory(categories?.[0].id);
   }, [categories]);
 
   function handleSubmit() {
@@ -46,7 +47,6 @@ export default function Challenge({ close }: Props) {
       description,
       flag,
       type,
-      file: file ? file : '',
       ...{ connectionByType },
       categoryId: category,
     };
@@ -54,15 +54,9 @@ export default function Challenge({ close }: Props) {
     close();
   }
 
-  function fileUpload(file: File) {
-    const formData = new FormData();
-    formData.append("file", file); 
-
-    uploadImage(formData).then((res) => {
-      console.log("File Upload", res);
-      setFile(res);
-    }).catch((err) => {
-      console.error("Upload Error", err);
+  function fileUpload(file: FormData) {
+    uploadImage(file).then((res) => {
+      setFile(res.location?.split("/")[1]);
     });
   }
 
@@ -81,7 +75,7 @@ export default function Challenge({ close }: Props) {
         />
         <Row>
           <Button as={"label"} htmlFor="file">
-            {file ? file : '파일 업로드'}
+            문제 파일 업로드
           </Button>
           <Button
             id="file"
@@ -89,12 +83,15 @@ export default function Challenge({ close }: Props) {
               display: "none",
             }}
             as={"input"}
-            type="file"            
+            type="file"
+            accept="image/*"
             onChange={(e) => {
               const file = e.target.files?.[0];
               e.target.value = "";
               if (!file) return;
-              fileUpload(file); 
+              const formData = new FormData();
+              formData.append("file", file);
+              fileUpload(formData);
             }}
           />
           <Button
@@ -156,15 +153,19 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
+
   padding: 4px 8px;
 `;
 
 const TitleInput = styled.input`
   width: 100%;
+
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #f5e6e1;
+
   padding: 8px 4px;
+
   font-size: 24px;
   font-weight: 500;
   color: white;
@@ -172,16 +173,19 @@ const TitleInput = styled.input`
 
 const Input = styled.input`
   width: 100%;
+
   background-color: #3a312f;
   border: none;
   border-radius: 8px;
   padding: 10px 12px;
+
   font-size: 16px;
   color: white;
 `;
 
 const TextArea = styled.textarea`
   width: 100%;
+
   background-color: #3a312f;
   border: none;
   border-radius: 8px;
@@ -197,10 +201,13 @@ const Button = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 100%;
+
   background-color: #3a312f;
   border-radius: 8px;
   padding: 8px;
+
   font-size: 18px;
   color: white;
   cursor: pointer;
@@ -212,7 +219,7 @@ const Label = styled.h3`
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
-  line-height: 150%;
+  line-height: 150%; /* 36px */
   letter-spacing: -0.48px;
 `;
 
@@ -225,10 +232,12 @@ const Row = styled.div`
 
 const Select = styled.select`
   width: 100%;
+
   background-color: #3a312f;
   border: none;
   border-radius: 8px;
   padding: 12px;
+
   font-size: 16px;
   color: white;
 `;
