@@ -56,25 +56,19 @@ export default function ChallengeEdit({ close, id }: Props) {
       name: name ? name : challenge.name,
       description: description ? description : challenge.description,
       type: type ? type : challenge.type,
-      file: file ? file : challenge.file,
+      file: file ? "https://cdn.plebea.com/upload/" + file : challenge.file,
       visible: visible ? visible : challenge.visible,
-      flag: checkFlagNull,
+      ...checkFlagNull,
       ...connectionByType,
     };
     updateChallenge(data);
   }
 
   function fileUpload(file: FormData) {
-    uploadImage(file).then((url) => {
-        const fileName = url.split("/").pop();
-        if (fileName) {
-            setFile(fileName);
-        } else {
-            console.error("파일명을 추출할 수 없습니다.");
-        }
+    uploadImage(file).then((res) => {
+      setFile(res.location?.split("/")[1]);
     });
   }
-
 
   return (
     <Container close={close}>
@@ -89,7 +83,7 @@ export default function ChallengeEdit({ close, id }: Props) {
         />
         <Row>
           <Button as={"label"} htmlFor="file">
-            {file ? file : '파일 업로드'}
+            문제 파일 업로드
           </Button>
           <Button
             id="file"
