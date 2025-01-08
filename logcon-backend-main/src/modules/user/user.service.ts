@@ -29,7 +29,7 @@ export class UserService {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
-    if (validateName(name)) {
+    if (!validateName(name)) {
       throw new HttpException('Invalid name', HttpStatus.BAD_REQUEST);
     }
 
