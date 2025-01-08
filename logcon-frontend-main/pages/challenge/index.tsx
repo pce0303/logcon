@@ -40,11 +40,6 @@ export default function Challenge() {
     );
   };
 
-  const handleDownload = (fileName: string) => {
-    const fileUrl = `http://cdn.teamlog.kr/${fileName}`;
-    return fileUrl;
-  };
-
   useEffect(() => {
     setIsExpandList(
       challenges?.reduce((acc, cur) => ({ ...acc, [cur.id]: false }), {}) ?? {}
@@ -127,7 +122,7 @@ export default function Challenge() {
                     <Option>
                       <ButtonContainer>
                         {challenge?.file && (
-                          <Download href={handleDownload(challenge.file)} target="_blank">
+                          <Download href={challenge?.file} target="_blank">
                             <p>문제 다운로드</p>
                             <img
                               src="/assets/icons/download.svg"
@@ -264,7 +259,7 @@ const Category = styled.div`
   p {
     align-self: stretch;
 
-    color: var(--2024-logcon-70, #F4FFFB);
+    color: var(--2024-logcon-70, #f5e6e1);
     font-family: Interop;
     font-size: 28px;
     font-style: normal;
@@ -290,15 +285,15 @@ const SelectorItem = styled.button<{ $isSelected: boolean }>`
   align-items: center;
 
   border-radius: 32px;
-  border: 1px solid var(--2024-logcon-40, #697565);
+  border: 1px solid var(--2024-logcon-40, #3d3330);
   color: ${({ $isSelected }) =>
     $isSelected
       ? "var(--2024-logcon-10, #1F1A18)"
-      : "var(--2024-logcon-60, #F2F2F2)"};
+      : "var(--2024-logcon-60, #D9CBC7)"};
   background: ${({ $isSelected }) =>
     $isSelected
-      ? "var(--2024-logcon-main, #ECDFCC)"
-      : "var(--2024-logcon-40, #1E201E)"};
+      ? "var(--2024-logcon-main, #E5A692)"
+      : "var(--2024-logcon-40, #3D3330)"};
   transition: color 0.2s, background 0.2s;
 `;
 
@@ -312,7 +307,7 @@ const List = styled.div`
   p {
     align-self: stretch;
 
-    color: var(--2024-logcon-70, #F4FFFB);
+    color: var(--2024-logcon-70, #f5e6e1);
     font-family: Interop;
     font-size: 28px;
     font-style: normal;
@@ -331,8 +326,8 @@ const Problem = styled.div`
   align-self: stretch;
 
   border-radius: 16px;
-  border: 1px solid var(--2024-logcon-40, #697565);
-  background: var(--2024-logcon-20, #2E312D);
+  border: 1px solid var(--2024-logcon-40, #3d3330);
+  background: var(--2024-logcon-20, #241e1d);
 `;
 
 const Header = styled.div`
@@ -343,7 +338,7 @@ const Header = styled.div`
 `;
 
 const Condition = styled.div`
-  color: var(--2024-logcon-70, #F4FFFB);
+  color: var(--2024-logcon-70, #f5e6e1);
   font-family: Interop;
   font-size: 24px;
   font-style: normal;
@@ -353,7 +348,7 @@ const Condition = styled.div`
 `;
 
 const Points = styled.div`
-  color: var(--2024-logcon-50, #EAEAEA);
+  color: var(--2024-logcon-50, #b2a8a4);
   font-family: Interop;
   font-size: 16px;
   font-style: normal;
@@ -364,7 +359,7 @@ const Points = styled.div`
 
 const Detail = styled.div`
   align-self: stretch;
-  color: var(--2024-logcon-60, #F2F2F2);
+  color: var(--2024-logcon-60, #d9cbc7);
   font-family: Interop;
   font-size: 16px;
   font-style: normal;
@@ -388,17 +383,17 @@ const ButtonContainer = styled.div`
   align-self: stretch;
 `;
 
-const Download = styled.a`
+const Download = styled(Link)`
   display: flex;
   padding: 12px 16px;
   justify-content: center;
   align-items: center;
   gap: 8px;
   border-radius: 8px;
-  background: var(--2024-logcon-30, #3A4542);
+  background: var(--2024-logcon-30, #3a312f);
 
   p {
-    color: var(--2024-logcon-60, #F2F2F2);
+    color: var(--2024-logcon-60, #d9cbc7);
     font-family: Interop;
     font-size: 16px;
     font-style: normal;
@@ -421,15 +416,15 @@ const ConnectionInfo = styled.button<{ $isExpand: boolean }>`
   border-radius: 8px;
   background: ${({ $isExpand }) =>
     $isExpand
-      ? "var(--2024-logcon-main, #ECDFCC)"
-      : "var(--2024-logcon-30, #3A4542)"};
+      ? "var(--2024-logcon-main, #E5A692)"
+      : "var(--2024-logcon-30, #3A312F)"};
   transition: background 0.2s, color 0.2s;
 
   p {
     color: ${({ $isExpand }) =>
       $isExpand
         ? "var(--2024-logcon-10, #1F1A18)"
-        : "var(--2024-logcon-60, #F2F2F2)"};
+        : "var(--2024-logcon-60, #D9CBC7)"};
     transition: background 0.2s, color 0.2s;
     font-family: Interop;
     font-size: 16px;
@@ -458,14 +453,14 @@ const Flag = styled.div<{ $isSolved: boolean }>`
     align-items: center;
     flex: 1 0 0;
     border-radius: 8px 0px 0px 8px;
-    background: var(--2024-logcon-30, #3A4542);
+    background: var(--2024-logcon-30, #3a312f);
     resize: none;
     outline: none;
     border: none;
     color: ${({ $isSolved }) =>
       $isSolved
-        ? "var(--2024-logcon-main, #ECDFCC)"
-        : "var(--2024-logcon-50, #EAEAEA)"};
+        ? "var(--2024-logcon-main, #E5A692)"
+        : "var(--2024-logcon-50, #B2A8A4)"};
     font-family: Interop;
     font-size: 16px;
     font-style: normal;
@@ -483,8 +478,8 @@ const Submit = styled.button`
   align-items: center;
 
   border-radius: 0px 8px 8px 0px;
-  background: var(--2024-logcon-main, #ECDFCC);
-  color: var(--2024-logcon-10, #241E1D);
+  background: var(--2024-logcon-main, #e5a692);
+  color: var(--2024-logcon-10, #1f1a18);
   font-family: Interop;
   font-size: 16px;
   font-style: normal;
@@ -500,10 +495,10 @@ const Connection = styled.div`
   gap: 8px;
   align-self: stretch;
   border-radius: 8px;
-  background: var(--2024-logcon-30, #3A4542);
+  background: var(--2024-logcon-30, #3a312f);
 
   p {
-    color: var(--2024-logcon-60, #F2F2F2);
+    color: var(--2024-logcon-60, #d9cbc7);
     font-family: Interop;
     font-size: 16px;
     font-style: normal;
@@ -520,7 +515,7 @@ const Check = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 0px 8px 8px 0px;
-  background: var(--2024-logcon-30, #3A4542);
+  background: var(--2024-logcon-30, #3a312f);
 
   img {
     width: 24px;
