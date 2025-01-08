@@ -3,6 +3,8 @@ version: "3"
 services:
   frontend:
     build: ./logcon-frontend-main
+    env_file:
+      - ./logcon-frontend-main/.env
     ports:
       - "3001:3000"
 
