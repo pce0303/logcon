@@ -10,6 +10,8 @@ COPY . .
 
 RUN yarn install
 
+RUN yarn global add @nestjs/cli
+
 RUN yarn build
 
 FROM node:18.19-alpine
