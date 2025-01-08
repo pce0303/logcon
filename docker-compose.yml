@@ -26,6 +26,6 @@ services:
     ports:
       - "3002:3000"
     env_file:
-      - ./src/env/production.env
+      - ./logcon-backend-main/src/env/production.env
     depends_on:
       - db
