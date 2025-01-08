@@ -8,10 +8,6 @@ services:
     ports:
       - '3306:3306'
     environment:
-      MYSQL_ROOT_PASSWORD: 0303
-      MYSQL_DATABASE: logcon
-      MYSQL_USER: logcon
-      MYSQL_PASSWORD: 0303
       TZ: Asia/Seoul
     volumes:
       - ./db/mysql/data:/var/lib/mysql
