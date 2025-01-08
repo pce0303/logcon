@@ -1,6 +1,19 @@
 version: "3"
 
 services:
+  cdn:
+    image: "ghcr.io/jungvengers/sunrinsecurity-cdn-v1:master"
+    env_file:
+      - .env
+    environment:
+      - PORT=3000
+    volumes:
+      - upload:/app/upload
+    ports:
+      - 4000:3000
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
   frontend:
     build: ./logcon-frontend-main
     env_file:
