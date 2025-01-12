@@ -13,8 +13,8 @@ export default function Index() {
                 <Title>7th</Title>
                 <Logo src="/assets/logo.svg" />
               </Column>
-              <SubTitle>2024. 1. 13. 9:00 ~ 2024. 1. 14. 9:00</SubTitle>
-              <Button href="https://discord.gg/rn3KGvjJ">
+              <SubTitle>2024. 1. 18. 11:00 ~ 2024. 1. 19. 00:00</SubTitle>
+              <Button href="https://discord.gg/A5uUsrPW">
                 디스코드 서버 참가
                 <ButtonImage src="/assets/icons/right_arrow.svg" />
               </Button>
