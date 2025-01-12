@@ -1,4 +1,6 @@
-FROM node:18.19-alpine
+FROM node:18.19
+RUN corepack enable
+
 WORKDIR /usr/src/app
 COPY . .
 RUN pnpm install
