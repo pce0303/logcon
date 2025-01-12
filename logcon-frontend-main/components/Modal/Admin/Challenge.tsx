@@ -11,6 +11,7 @@ import { useCategory } from "@/hooks/category";
 import { CreateProps } from "@/api/Challenge/create";
 import { ChallengeType } from "@/api/Challenge/get";
 import { uploadImage } from "@/api/image";
+import Swal from "sweetalert2";
 
 interface Props {
   close: () => void;
@@ -28,12 +29,16 @@ export default function Challenge({ close }: Props) {
   const [category, setCategory] = useState<string | undefined>("");
   const [connection, setConnection] = useState<string | undefined>(undefined);
 
-  if (!categories?.length) {
-    close();
-    return alert("카테고리가 없습니다.");
-  }
-
   useEffect(() => {
+    if (!categories?.length) {
+      Swal.fire({
+        icon: "error",
+        title: "카테고리가 없습니다.",
+      });
+
+      close();
+    }
+
     setCategory(categories?.[0]?.id);
   }, [categories]);
 
