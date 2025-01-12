@@ -41,7 +41,7 @@ export default function UserInfoRoot({ children }: Props) {
   return (
     <>
       <Head>
-        <title>2024 LOGCON</title>
+        <title>2025 LOGCON</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
       <>{children}</>
