@@ -1,4 +1,4 @@
-FROM node:18.19-alpine AS builder
+FROM node:18.19 AS builder
 ENV NODE_ENV production
 
 RUN apk add --no-cache tzdata && \
