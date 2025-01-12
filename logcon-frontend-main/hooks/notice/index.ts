@@ -37,3 +37,19 @@ export function useUploadNotice() {
     }
   );
 }
+
+export function useDeleteNotice() {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    "notice",
+    async (id: string) => {
+      await Notice.delete(id);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("notice");
+      },
+    }
+  );
+}

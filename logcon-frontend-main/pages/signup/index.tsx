@@ -30,9 +30,8 @@ export default function Signup() {
     register({ id, password, school, name, email })
       .then(() => router.push("/challenge"))
       .catch((e) => {
-        console.error(e);
         setUserInfo({ loaded: true });
-        alert("회원가입에 실패했습니다.");
+        alert(`회원가입에 실패했습니다.\n${e.response.data.message}`);
       });
   };
 
@@ -145,9 +144,9 @@ const InputGroup = styled.div`
 
 const Button = styled.button`
   border-radius: 2px;
-  background: #3D423B;
+  background: #3d423b;
   flex: 1;
-  color: #EAEAEA;
+  color: #eaeaea;
 
   font-size: 16px;
   font-weight: 500;
@@ -164,7 +163,7 @@ const SignUpWrapper = styled.div`
   width: 100%;
   justify-content: flex-end;
 
-  color: #EAEAEA;
+  color: #eaeaea;
 
   font-size: 16px;
   font-weight: 500;

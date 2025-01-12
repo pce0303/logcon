@@ -23,7 +23,6 @@ export default function Signin() {
         router.push("/challenge");
       })
       .catch((e) => {
-        console.log(e);
         alert("로그인에 실패했습니다.");
       });
   };
@@ -109,9 +108,9 @@ const InputGroup = styled.div`
 
 const Button = styled.button`
   border-radius: 2px;
-  background: #3D423B;
+  background: #3d423b;
   flex: 1;
-  color: #EAEAEA;
+  color: #eaeaea;
 
   font-size: 16px;
   font-weight: 500;
@@ -128,7 +127,7 @@ const SignInWrapper = styled.div`
   width: 100%;
   justify-content: flex-end;
 
-  color: #EAEAEA;
+  color: #eaeaea;
 
   font-size: 16px;
   font-weight: 500;

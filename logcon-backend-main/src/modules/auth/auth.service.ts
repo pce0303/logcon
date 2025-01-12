@@ -52,22 +52,34 @@ export class AuthService {
 
     if (!validateEmail(email)) {
       console.log('Invalid email:', email);
-      throw new HttpException('Invalid email', HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        '이메일 형식이 올바르지 않습니다.',
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     if (!validatePassword(password)) {
       console.log('Invalid password:', password);
-      throw new HttpException('Invalid password', HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        '비밀번호는 4자리 이상으로 설정해주세요.',
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     if (!validateName(name)) {
       console.log('Invalid name:', name);
-      throw new HttpException('Invalid name', HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        '이름이 올바르지 않습니다.',
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     if (!validateId(id)) {
       console.log('Invalid id:', id);
-      throw new HttpException('Invalid id', HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        '아이디가 올바르지 않습ㄴ니다.',
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     const newUser = this.userRepository.create({

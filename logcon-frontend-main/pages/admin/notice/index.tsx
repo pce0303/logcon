@@ -1,12 +1,16 @@
+import Swal from "sweetalert2";
+
 import Content from "@/components/Content";
 import Modal from "@/components/Modal";
-import { useNotice } from "@/hooks/notice";
+import { useDeleteNotice, useNotice } from "@/hooks/notice";
 import { useState } from "react";
 import styled from "styled-components";
 
 export default function AdminNotice() {
   const { data: notices } = useNotice();
   const [modal, setModal] = useState(false);
+
+  const { mutateAsync } = useDeleteNotice();
 
   return (
     <>
@@ -18,7 +22,19 @@ export default function AdminNotice() {
           </TitleRow>
           <Row>
             {notices?.map((notice) => (
-              <ContentBox key={notice.id}>
+              <ContentBox
+                key={notice.id}
+                onClick={() =>
+                  Swal.fire({
+                    title: "공지사항 삭제",
+                    text: "정말 삭제하시겠습니까?",
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      mutateAsync(notice.id);
+                    }
+                  })
+                }
+              >
                 <ContentTitle>{notice.title}</ContentTitle>
                 <ContentDetail>{notice.description}</ContentDetail>
               </ContentBox>
@@ -42,7 +58,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  color: #F2F2F2;
+  color: #f2f2f2;
   font-family: Interop;
   font-size: 28px;
   font-style: normal;
@@ -58,14 +74,14 @@ const TitleRow = styled.div`
 `;
 
 const Button = styled.button`
-  color: #F2F2F2;
+  color: #f2f2f2;
   font-family: Interop;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
   line-height: 150%; /* 27px */
   letter-spacing: -0.36px;
-  background-color: #3A4542;
+  background-color: #3a4542;
   border-radius: 12px;
   border: none;
   padding: 12px 18px;
@@ -80,7 +96,7 @@ const Row = styled.div`
   gap: 12px;
 `;
 
-const ContentBox = styled.div`
+const ContentBox = styled.button`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -88,14 +104,14 @@ const ContentBox = styled.div`
   gap: 12px;
   width: 180px;
   padding: 12px 18px;
-  background-color: #2E312D;
+  background-color: #2e312d;
   border-radius: 12px;
   border: 1px solid var(--2024-logcon-30, #697565);
   cursor: pointer;
 `;
 
 const ContentTitle = styled.h3`
-  color: #F2F2F2;
+  color: #f2f2f2;
   font-family: Interop;
   font-size: 18px;
   font-style: normal;
@@ -105,7 +121,7 @@ const ContentTitle = styled.h3`
 `;
 
 const ContentDetail = styled.p`
-  color: #F2F2F2;
+  color: #f2f2f2;
   font-family: Interop;
   font-size: 14px;
   font-style: normal;

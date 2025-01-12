@@ -42,8 +42,6 @@ export default function Sidebar() {
     [isAdmin?.status]
   );
 
-  console.log(isAdmin?.status);
-
   return (
     <>
       <Background $isOpen={isOpen} onClick={() => setIsOpen(false)} />
@@ -121,7 +119,7 @@ const Wrapper = styled.div<{ $isOpen: boolean }>`
   bottom: 48px;
 
   border: 1px solid #697565;
-  background-color: #2E312D;
+  background-color: #2e312d;
 
   margin: 48px 0;
 
@@ -181,7 +179,7 @@ const ProfileWrapper = styled(Link)`
   gap: 12px;
 
   p {
-    color: #F4FFFB;
+    color: #f4fffb;
     font-size: 18px;
     font-weight: 600;
     line-height: 150%;
@@ -216,7 +214,7 @@ const InformationWrapper = styled.div`
   gap: 4px;
 
   p {
-    color: #F4FFFB;
+    color: #f4fffb;
     font-size: 16px;
     font-weight: 500;
     line-height: 150%;
@@ -230,7 +228,7 @@ const LinkWrapper = styled.div`
   gap: 12px;
 
   a {
-    color: #ECDFCC;
+    color: #ecdfcc;
     font-size: 16px;
     font-weight: 500;
     line-height: 150%;
@@ -240,6 +238,6 @@ const LinkWrapper = styled.div`
   hr {
     width: 1px;
     height: 12px;
-    background-color: #ECDFCC;
+    background-color: #ecdfcc;
   }
 `;

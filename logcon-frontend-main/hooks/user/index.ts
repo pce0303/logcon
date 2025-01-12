@@ -12,7 +12,6 @@ export function useUserInfo() {
   const router = useRouter();
 
   return useQuery("userInfo", async () => {
-    console.log(userInfo.loaded, userInfo.id);
     if (
       (publicRoute.includes(router.pathname) && !userInfo.loaded) ||
       (publicRoute.includes(router.pathname) && userInfo?.id === null)

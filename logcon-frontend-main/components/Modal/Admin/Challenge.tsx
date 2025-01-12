@@ -28,8 +28,13 @@ export default function Challenge({ close }: Props) {
   const [category, setCategory] = useState<string | undefined>("");
   const [connection, setConnection] = useState<string | undefined>(undefined);
 
+  if (!categories?.length) {
+    close();
+    return alert("카테고리가 없습니다.");
+  }
+
   useEffect(() => {
-    setCategory(categories?.[0].id);
+    setCategory(categories?.[0]?.id);
   }, [categories]);
 
   function handleSubmit() {

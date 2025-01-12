@@ -259,7 +259,7 @@ const Category = styled.div`
   p {
     align-self: stretch;
 
-    color: var(--2024-logcon-70, #F4FFFB);
+    color: var(--2024-logcon-70, #f4fffb);
     font-family: Interop;
     font-size: 28px;
     font-style: normal;
@@ -307,7 +307,7 @@ const List = styled.div`
   p {
     align-self: stretch;
 
-    color: var(--2024-logcon-70, #F4FFFB);
+    color: var(--2024-logcon-70, #f4fffb);
     font-family: Interop;
     font-size: 28px;
     font-style: normal;
@@ -327,7 +327,7 @@ const Problem = styled.div`
 
   border-radius: 16px;
   border: 1px solid var(--2024-logcon-40, #697565);
-  background: var(--2024-logcon-20, #2E312D);
+  background: var(--2024-logcon-20, #2e312d);
 `;
 
 const Header = styled.div`
@@ -338,7 +338,7 @@ const Header = styled.div`
 `;
 
 const Condition = styled.div`
-  color: var(--2024-logcon-70, #F4FFFB);
+  color: var(--2024-logcon-70, #f4fffb);
   font-family: Interop;
   font-size: 24px;
   font-style: normal;
@@ -348,7 +348,7 @@ const Condition = styled.div`
 `;
 
 const Points = styled.div`
-  color: var(--2024-logcon-50, #EAEAEA);
+  color: var(--2024-logcon-50, #eaeaea);
   font-family: Interop;
   font-size: 16px;
   font-style: normal;
@@ -359,7 +359,7 @@ const Points = styled.div`
 
 const Detail = styled.div`
   align-self: stretch;
-  color: var(--2024-logcon-60, #F2F2F2);
+  color: var(--2024-logcon-60, #f2f2f2);
   font-family: Interop;
   font-size: 16px;
   font-style: normal;
@@ -390,10 +390,10 @@ const Download = styled(Link)`
   align-items: center;
   gap: 8px;
   border-radius: 8px;
-  background: var(--2024-logcon-30, #3A4542);
+  background: var(--2024-logcon-30, #3a4542);
 
   p {
-    color: var(--2024-logcon-60, #F2F2F2);
+    color: var(--2024-logcon-60, #f2f2f2);
     font-family: Interop;
     font-size: 16px;
     font-style: normal;
@@ -453,7 +453,7 @@ const Flag = styled.div<{ $isSolved: boolean }>`
     align-items: center;
     flex: 1 0 0;
     border-radius: 8px 0px 0px 8px;
-    background: var(--2024-logcon-30, #3A4542);
+    background: var(--2024-logcon-30, #3a4542);
     resize: none;
     outline: none;
     border: none;
@@ -478,8 +478,8 @@ const Submit = styled.button`
   align-items: center;
 
   border-radius: 0px 8px 8px 0px;
-  background: var(--2024-logcon-main, #ECDFCC);
-  color: var(--2024-logcon-10, #241E1D);
+  background: var(--2024-logcon-main, #ecdfcc);
+  color: var(--2024-logcon-10, #241e1d);
   font-family: Interop;
   font-size: 16px;
   font-style: normal;
@@ -495,10 +495,10 @@ const Connection = styled.div`
   gap: 8px;
   align-self: stretch;
   border-radius: 8px;
-  background: var(--2024-logcon-30, #3A4542);
+  background: var(--2024-logcon-30, #3a4542);
 
   p {
-    color: var(--2024-logcon-60, #F2F2F2);
+    color: var(--2024-logcon-60, #f2f2f2);
     font-family: Interop;
     font-size: 16px;
     font-style: normal;
@@ -515,7 +515,7 @@ const Check = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 0px 8px 8px 0px;
-  background: var(--2024-logcon-30, #3A4542);
+  background: var(--2024-logcon-30, #3a4542);
 
   img {
     width: 24px;

@@ -8,11 +8,11 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN yarn install
+RUN pnpm install
 
-RUN yarn global add @nestjs/cli
+RUN pnpm install --global @nestjs/cli
 
-RUN yarn build
+RUN pnpm build
 
 EXPOSE 3000
 CMD [ "yarn", "start:prod" ]
