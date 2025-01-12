@@ -86,7 +86,7 @@ export default function Sidebar() {
           </MenuWrapper>
         </TitleWrapper>
         <InformationWrapper>
-          <p>&copy; 2024 TeamLog</p>
+          <p>&copy; 2025 TeamLog</p>
           <LinkWrapper>
             <Link href={"https://teamlog.kr"}>Website</Link>
             <hr />
