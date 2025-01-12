@@ -9,8 +9,6 @@ COPY . .
 
 RUN pnpm install
 
-RUN pnpm install --global @nestjs/cli
-
 RUN pnpm build
 
 EXPOSE 3000
