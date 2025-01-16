@@ -9,7 +9,7 @@ import { Repository } from 'typeorm';
 import { Challenge } from '../../shared/entities/challenge.entity';
 import { CreateChallengeDto } from './dto/create-challenge.dto';
 import { UpdateChallengeDto } from './dto/update-challenge.dto';
-import { Solve, User } from 'src/shared/entities';
+import { Solve, User, Category } from 'src/shared/entities';
 import { sha256 } from 'src/utils/enc';
 import { calculateScore } from 'src/utils/score';
 
@@ -22,6 +22,8 @@ export class ChallengeService {
     private solveRepository: Repository<Solve>,
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    @InjectRepository(Category)
+    private categoryRepository: Repository<Category>,
   ) {}
 
   async create(body: CreateChallengeDto): Promise<Challenge> {
@@ -65,14 +67,28 @@ export class ChallengeService {
         HttpStatus.NOT_FOUND,
       );
     }
-
-    const res = await this.challengeRepository.update(
-      { id },
-      { ...body, category: { id: body.categoryId } },
-    );
-
-    return res;
+  
+    const updateData: Partial<Challenge> = { ...body };
+  
+    if (body.categoryId) {
+      const category = await this.categoryRepository.findOne({
+        where: { id: body.categoryId },
+      });
+  
+      if (!category) {
+        throw new NotFoundException(
+          `Category with ID "${body.categoryId}" not found`,
+        );
+      }
+  
+      updateData.category = category;
+    }
+  
+    await this.challengeRepository.update({ id }, updateData);
+  
+    return this.findOne(id);
   }
+  
 
   async remove(id: string) {
     const res = await this.challengeRepository.delete(id);
