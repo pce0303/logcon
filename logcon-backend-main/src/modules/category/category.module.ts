@@ -8,5 +8,6 @@ import { Category } from '../../shared/entities/category.entity';
   imports: [TypeOrmModule.forFeature([Category])], // 엔티티
   controllers: [CategoryController], // 컨트롤러
   providers: [CategoryService], // 서비스
+  exports: [TypeOrmModule],
 })
 export class CategoryModule {}
