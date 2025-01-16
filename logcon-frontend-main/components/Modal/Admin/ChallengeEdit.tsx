@@ -21,7 +21,7 @@ export default function ChallengeEdit({ close, id }: Props) {
 
   const [name, setName] = useState(challenge?.name);
   const [description, setDescription] = useState(challenge?.description);
-  const [flag, setFlag] = useState("");
+  const [flag, setFlag] = useState(challenge?.flag || "");
   const [type, setType] = useState("NONE");
   const [connection, setConnection] = useState<string | undefined>("");
   const [file, setFile] = useState<string | undefined>(undefined);
@@ -50,7 +50,7 @@ export default function ChallengeEdit({ close, id }: Props) {
         ? { connection }
         : { imageId: connection };
 
-    const checkFlagNull = flag ? flag : {};
+    const checkFlagNull = flag ? flag : undefined;
 
     const data = {
       name: name ? name : challenge.name,
@@ -58,7 +58,7 @@ export default function ChallengeEdit({ close, id }: Props) {
       type: type ? type : challenge.type,
       file: file ? "https://cdn.teamlog.kr/upload/" + file : challenge.file,
       visible: visible ? visible : challenge.visible,
-      ...checkFlagNull,
+      ...checkFlagNull && { flag: checkFlagNull },
       ...connectionByType,
     };
     updateChallenge(data);
