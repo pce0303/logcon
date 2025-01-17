@@ -131,7 +131,7 @@ export default function Profile() {
                           </TableProblemsName>
                           <TableProblemsInterface>
                             <TableProblemsTime>
-                              {formatDateString(solve?.challenge?.createdAt!)}
+                              {formatDateString(solve?.createdAt!)}
                             </TableProblemsTime>
                             <TableProblemsPoints>
                               {solve?.challenge?.point} Points
