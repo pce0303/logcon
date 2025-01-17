@@ -42,8 +42,13 @@ export class ChallengeService {
   async findAll(user?: Express.User): Promise<Challenge[]> {
     const isAdmin = user && user?.isAdmin;
 
-    return await this.challengeRepository.find({
+    const data = await this.challengeRepository.find({
       where: isAdmin ? {} : { visible: true },
+    });
+
+    return data.map((challenge) => {
+      delete challenge.flag;
+      return challenge;
     });
   }
 
@@ -67,28 +72,27 @@ export class ChallengeService {
         HttpStatus.NOT_FOUND,
       );
     }
-  
+
     const updateData: Partial<Challenge> = { ...body };
-  
+
     if (body.categoryId) {
       const category = await this.categoryRepository.findOne({
         where: { id: body.categoryId },
       });
-  
+
       if (!category) {
         throw new NotFoundException(
           `Category with ID "${body.categoryId}" not found`,
         );
       }
-  
+
       updateData.category = category;
     }
-  
+
     await this.challengeRepository.update({ id }, updateData);
-  
+
     return this.findOne(id);
   }
-  
 
   async remove(id: string) {
     const res = await this.challengeRepository.delete(id);
