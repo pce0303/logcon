@@ -10,7 +10,7 @@ export default function Index() {
           <BoxWrapper>
             <Column $gap={32}>
               <Column $gap={12}>
-                <Title>7th</Title>
+                <Title>8th</Title>
                 <Logo src="/assets/logo.svg" />
               </Column>
               <SubTitle>2025. 1. 18. 11:00 ~ 2025. 1. 19. 00:00</SubTitle>
