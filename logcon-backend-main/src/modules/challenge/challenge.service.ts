@@ -89,7 +89,13 @@ export class ChallengeService {
       updateData.category = category;
     }
 
-    await this.challengeRepository.update({ id }, updateData);
+    await this.challengeRepository.update(
+      { id },
+      {
+        ...updateData,
+        ...(body.flag ? { flag: sha256(body.flag) } : {}),
+      },
+    );
 
     return this.findOne(id);
   }
