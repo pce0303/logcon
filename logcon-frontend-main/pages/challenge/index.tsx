@@ -191,7 +191,7 @@ export default function Challenge() {
                               solve.challenge?.id === challenge.id
                           ) ? (
                             <>
-                              <textarea value="2시간 전에 풀이 완료" disabled />
+                              <textarea value="풀이 완료" disabled />
                               <Check>
                                 <img src={check} alt="체크" />
                               </Check>
