@@ -2,7 +2,7 @@ import { apiInstance } from ".";
 
 export async function uploadImage(file: FormData) {
   const res = await apiInstance(false).post(
-    "https://cdn.teamlog.kr/upload/",
+    "https://cdn.teamlog.kr/",
     file,
     {
       headers: {

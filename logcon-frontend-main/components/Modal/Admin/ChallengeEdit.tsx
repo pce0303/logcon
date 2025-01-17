@@ -56,7 +56,7 @@ export default function ChallengeEdit({ close, id }: Props) {
       name: name ? name : challenge.name,
       description: description ? description : challenge.description,
       type: type ? type : challenge.type,
-      file: file ? "https://cdn.teamlog.kr/" + file : challenge.file,
+      file: file ? "https://cdn.teamlog.kr/upload/" + file : challenge.file,
       visible: visible ? visible : challenge.visible,
       ...checkFlagNull && { flag: checkFlagNull },
       ...connectionByType,
