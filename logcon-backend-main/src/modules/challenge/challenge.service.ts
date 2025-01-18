@@ -211,9 +211,11 @@ export class ChallengeService {
     });
 
     for (const user of users) {
-      const score = user.solves.reduce((acc, solve) => {
-        return acc + solve.challenge.point;
-      }, 0);
+      const score = user.solves
+        .filter((solve) => solve.correct)
+        .reduce((acc, solve) => {
+          return acc + solve.challenge.point;
+        }, 0);
 
       await this.userRepository.update(
         {
