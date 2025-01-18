@@ -77,7 +77,7 @@ export default function ProfileById() {
                           </TableProblemsName>
                           <TableProblemsInterface>
                             <TableProblemsTime>
-                              {formatDateString(solve?.created!)}
+                              {formatDateString(solve?.challenge?.createdAt!)}
                             </TableProblemsTime>
                             <TableProblemsPoints>
                               {solve?.challenge?.point} Points
