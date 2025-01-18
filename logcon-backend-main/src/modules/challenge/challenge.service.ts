@@ -183,7 +183,7 @@ export class ChallengeService {
 
   public async sync() {
     const challenge = await this.challengeRepository.find({
-      relations: ['solve'],
+      relations: ['solves'],
       where: {
         solves: {
           correct: true,
