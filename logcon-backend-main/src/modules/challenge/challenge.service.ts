@@ -192,7 +192,7 @@ export class ChallengeService {
     });
 
     for (const c of challenge) {
-      const score = calculateScore(Math.max(c.solves.length - 1, 0));
+      const score = c.solves?.length ? calculateScore(c.solves.length) : 500;
 
       console.log(c.name, score, c.solves.length);
 
