@@ -184,15 +184,12 @@ export class ChallengeService {
   public async sync() {
     const challenge = await this.challengeRepository.find({
       relations: ['solves'],
-      where: {
-        solves: {
-          correct: true,
-        },
-      },
     });
 
     for (const c of challenge) {
-      const score = c.solves?.length ? calculateScore(c.solves.length) : 500;
+      const score = c.solves.filter((solve) => solve.correct)?.length
+        ? calculateScore(c.solves.length)
+        : 500;
 
       console.log(c.name, score, c.solves.length);
 
