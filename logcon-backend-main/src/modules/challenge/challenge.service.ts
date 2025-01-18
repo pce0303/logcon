@@ -192,7 +192,9 @@ export class ChallengeService {
     });
 
     for (const c of challenge) {
-      const score = calculateScore(Math.max(c.solves.length - 1));
+      const score = calculateScore(Math.max(c.solves.length - 1, 0));
+
+      console.log(c.name, score, c.solves.length);
 
       await this.challengeRepository.update(
         {
