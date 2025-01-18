@@ -182,7 +182,7 @@ export class ChallengeService {
   }
 
   @Cron(CronExpression.EVERY_10_MINUTES)
-  async updateChallengePoint() {
+  async syncUserPoint() {
     const users = await this.userRepository.find({
       relations: ['solves', 'solves.challenge'],
     });
@@ -195,6 +195,33 @@ export class ChallengeService {
         }, 0);
 
       await this.userRepository.save(user);
+    });
+  }
+
+  @Cron(CronExpression.EVERY_10_MINUTES)
+  async updateChallengePoint() {
+    const challenges = await this.challengeRepository.find();
+
+    challenges.forEach(async (challenge) => {
+      const solves = await this.solveRepository.find({
+        where: {
+          challenge: {
+            id: challenge.id,
+          },
+          correct: true,
+        },
+      });
+
+      const score = calculateScore(solves.length - 1);
+
+      await this.challengeRepository.update(
+        {
+          id: challenge.id,
+        },
+        {
+          point: score,
+        },
+      );
     });
   }
 }
