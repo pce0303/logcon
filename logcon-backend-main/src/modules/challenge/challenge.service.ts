@@ -12,6 +12,7 @@ import { UpdateChallengeDto } from './dto/update-challenge.dto';
 import { Solve, User, Category } from 'src/shared/entities';
 import { sha256 } from 'src/utils/enc';
 import { calculateScore } from 'src/utils/score';
+import { Cron, CronExpression } from '@nestjs/schedule';
 
 @Injectable()
 export class ChallengeService {
@@ -178,5 +179,20 @@ export class ChallengeService {
     }
 
     return { correct };
+  }
+
+  @Cron(CronExpression.EVERY_10_MINUTES)
+  async updateChallengePoint() {
+    const users = await this.userRepository.find({
+      relations: ['solves', 'solves.challenge'],
+    });
+
+    users.forEach(async (user) => {
+      user.score = user.solves.reduce((acc, solve) => {
+        return acc + solve.challenge.point;
+      }, 0);
+
+      await this.userRepository.save(user);
+    });
   }
 }
