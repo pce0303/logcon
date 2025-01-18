@@ -70,4 +70,10 @@ export class ChallengeController {
   ): Promise<SolveResDto> {
     return await this.challengeService.solve(id, body.flag, user);
   }
+
+  @Get('sync')
+  @UseGuards(AdminGuard)
+  async sync() {
+    return await this.challengeService.sync();
+  }
 }
