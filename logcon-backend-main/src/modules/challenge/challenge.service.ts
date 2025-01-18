@@ -188,9 +188,11 @@ export class ChallengeService {
     });
 
     users.forEach(async (user) => {
-      user.score = user.solves.reduce((acc, solve) => {
-        return acc + solve.challenge.point;
-      }, 0);
+      user.score = user.solves
+        .filter((solve) => solve.correct)
+        .reduce((acc, solve) => {
+          return acc + solve.challenge.point;
+        }, 0);
 
       await this.userRepository.save(user);
     });
