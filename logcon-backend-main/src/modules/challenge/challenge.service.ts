@@ -187,9 +187,8 @@ export class ChallengeService {
     });
 
     for (const c of challenge) {
-      const score = c.solves.filter((solve) => solve.correct)?.length
-        ? calculateScore(c.solves.length)
-        : 500;
+      const _len = c.solves.filter((solve) => solve.correct)?.length;
+      const score = _len > 0 ? calculateScore(_len) : 500;
 
       console.log(c.name, score, c.solves.length);
 
