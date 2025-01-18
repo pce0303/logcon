@@ -190,8 +190,6 @@ export class ChallengeService {
       const _len = c.solves.filter((solve) => solve.correct)?.length;
       const score = _len > 0 ? calculateScore(_len) : 500;
 
-      console.log(c.name, score, c.solves.length);
-
       await this.challengeRepository.update(
         {
           id: c.id,
