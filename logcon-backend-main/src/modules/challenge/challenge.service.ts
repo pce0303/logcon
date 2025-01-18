@@ -12,7 +12,7 @@ import { UpdateChallengeDto } from './dto/update-challenge.dto';
 import { Solve, User, Category } from 'src/shared/entities';
 import { sha256 } from 'src/utils/enc';
 import { calculateScore } from 'src/utils/score';
-import { Cron, CronExpression } from '@nestjs/schedule';
+import { Cron, CronExpression, Interval } from '@nestjs/schedule';
 
 @Injectable()
 export class ChallengeService {
@@ -220,5 +220,10 @@ export class ChallengeService {
         },
       );
     }
+  }
+
+  @Interval(1000 * 60)
+  public async syncAutomation() {
+    await this.sync();
   }
 }
