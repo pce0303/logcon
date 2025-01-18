@@ -22,6 +22,12 @@ import { SolveDto, SolveResDto } from './dto/solve.dto';
 export class ChallengeController {
   constructor(private readonly challengeService: ChallengeService) {}
 
+  @Get('sync')
+  @UseGuards(AdminGuard)
+  async sync() {
+    return await this.challengeService.sync();
+  }
+
   @Post()
   @UseGuards(AdminGuard)
   @ApiBearerAuth()
@@ -69,11 +75,5 @@ export class ChallengeController {
     @User() user: Express.User,
   ): Promise<SolveResDto> {
     return await this.challengeService.solve(id, body.flag, user);
-  }
-
-  @Get('sync')
-  @UseGuards(AdminGuard)
-  async sync() {
-    return await this.challengeService.sync();
   }
 }
